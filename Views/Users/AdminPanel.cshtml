@@ -1,0 +1,30 @@
+﻿@model IEnumerable<JanumikaPro.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1 style="text-align:center">Admin Panel</h1>
+<div class="row offset-3" style="text-align:center">
+    <div class="card col-4" style="width: 18rem; margin:10px; text-align:center">
+        <img src="https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/004/385/original/layer.png" class="card-img-top" alt="...">
+        <h5 class="card-title">Items</h5>
+        <a asp-controller="Items" asp-action="Index1" class="btn btn-primary">Edit</a>
+    </div>
+    <div class="card col-4" style="width: 18rem;margin:10px;text-align:center">
+        <img src="https://thumbs.dreamstime.com/b/black-line-icon-category-menu-collection-black-line-icon-category-menu-list-miscellaneous-collection-139790633.jpg" class="card-img-top" alt="...">
+        <h5 class="card-title">Category</h5>
+        <a asp-controller="Categories" asp-action="Index" class="btn btn-primary">Edit</a>
+    </div>
+</div>
+<div class="row offset-3" style="text-align:center">
+    <div class="card col-4" style="width: 18rem; margin:10px;text-align:center">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAYFBMVEX///8AAABhYWHCwsKGhobNzc2srKylpaWxsbFxcXHIyMiOjo5+fn6BgYHFxcW8vLySkpL39/evr69sbGxnZ2fT09OdnZ0YGBhWVlbq6uolJSUuLi7j4+N3d3dPT0/c3NwPt+KYAAADWElEQVR4nO3c7XKiMBSAYRBQ18qXqK1tt73/u9x1d2aha3oCISFH531/pybPWBBTaJIQ9bVZflzN75hnbWyKuTz1Vx4bY+jk0XetiA36v9ozME3r2KSv+X4Hr51io74UAJimsVHDzkGE59isQc9BhM+xWX0hjsJreo7EdSDhOjbsX0+BhE9LLL7Nms54bfUy+EjeBxLu+ymKF+Mquiab6Su/n37w0gsIs+9HlTOuYnfS9GqEM67wNuL0ioSupyT5RVUJ3d7F1jK9KmHqciwKJ5k/6RI204G2t1CZ0OEy3fqFT5lw+pFovU5RJpz+ReRoe8nBd/AFhNZfqZ+Thav+h5squ62+9GNtJyXXyn6KS21YQ9X0Y1dzhJVtbHO7OC9ZT5CVJ6H14tb/NtTfrJtRg6MzrPASSHixTbyYMPkIAvywzrucsAgitH/ELSdMugDAEWteUJi8ege+jph1SWH75hn4NubbwpJC3x/7pX3CxYXJxZ+xfB835cLC373vfDSSF0W4dAjFEKoIoRhCFSEUQ6gihGIIVYRQDKGKEIohVBFCMYQqQiiGUEUIxRCqCKEYQhUhFLMKt2V+Wzm4Q6Q2DXCs3EYQmv+mPbin3OtzJua/64cVmh+KDSU0PzaLECFChAgRIkSIECFChAgRIkToYZ/G5//+irJPU6wNbT77ASfTANfMT3mxXyqGUEUIxRCqCKEYQhUhFEOoIoRiCFWEUAyhihCKIVRRWOFuY2qw11YYBzi2iyB8/P3Sx9/zRogQIUKECBEiRIgQIUKECBE+hvDxnz80PkO6f6RnSDWEUAyhihCKIVQRQjGEKkIohlBFCMUQqgihGEIVIRRDmBSH7W2H4TOkpgGOHWI8Q2reL930A7ivbVLs6iNEiBAhQoQIESJEiBAhQoQIXYWPf1/buvtxW1f1A7amAY51a+Ma2C8VQ6gihGIIVYRQDKGKEIohVBFCMYQqQiiGUEUIxRCqCKEYQhUhFEOoIoRiCFWEUGwgrOyjI1V5Ep5Phc5O5znCLr2vusnCJvaSJ9ZMFlb2F1WVw+kw9pInNh2Y7GOveVLm+23k2tiLnlTrIBx+nKrP8aLkbH9lJW3sGHN17JWPbMZlZXsPp5vc6RjsjXV5XOntmNfzfHQP/QIovmk4TfVzegAAAABJRU5ErkJggg==" class="card-img-top" alt="...">
+        <h5 class="card-title">Orders</h5>
+        <a asp-controller="Orders" asp-action="Index1" class="btn btn-primary">Edit</a>
+    </div>
+    <div class="card col-4" style="width: 18rem;margin:10px;text-align:center">
+        <img src="data:image/png;base64,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" class="card-img-top" alt="...">
+        <h5 class="card-title">Users</h5>
+        <a asp-controller="Users" asp-action="Index1" class="btn btn-primary">Edit</a>
+    </div>
+</div>

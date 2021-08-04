@@ -1,0 +1,65 @@
+﻿@model IEnumerable<JanumikaPro.Models.Category>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="text-center">
+        <img src="https://static.wixstatic.com/media/163650_9eb98d02dd8e47c3916ea24ccdae0f36~mv2.png/v1/fill/w_186,h_105,al_c,q_95/163650_9eb98d02dd8e47c3916ea24ccdae0f36~mv2.webp" />
+    </div>
+    <br />
+    <br />
+
+
+
+    <div id="searchHome" style=" ">
+        <form asp-controller="Items" asp-action="Search">
+            <label class="text" id="search" style="font-size:30px"><b><u>Search</u></b></label><br />
+            <label class="text" for="Item Name"><b>Item Name :</b></label>
+            <input type="text" id="productName" name="productName" required min="1"><br />
+            <label class="text" for="price"><b>Max Price</b>:</label>
+            <select class="choiceStyle" name="price" id="price" required>
+
+                @for (int i = 5; i < 305; i += 5)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select><br />
+            <label for="categories"><b>Category :</b></label>
+            <select class="choiceStyle" name="category" id="category" required>
+
+                @foreach (var item in ViewBag.categories)
+                {
+                    <option value="@item.Name">@item.Name</option>
+                }
+            </select>
+            <input type="submit" value="Search" class="btn btn-secondary" />
+        </form>
+    </div>
+
+
+
+<div class="card-group card-goup">
+    <div class="row cardgrouprow">
+        @foreach (var item in ViewBag.categories)
+        {
+            <div class="col-sm collumn">
+                <div class="card btn-outline btn-width">
+                    <a class="asp-style-card">
+                        
+                            <img src=@item.Image.Name class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Name</h5>
+                            </div>
+                      
+                    </a>
+                    <div class="card-footer">
+                        <form asp-controller="Categories" asp-action="ItemsView" asp-route-id="@item.CategoryId">
+                            <button type="submit" class="btn btn-secondary btn-sm card-background">
+                                More Info
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>}
+    </div>
+</div>

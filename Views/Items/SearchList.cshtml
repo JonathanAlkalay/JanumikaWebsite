@@ -1,0 +1,44 @@
+﻿@model IEnumerable<JanumikaPro.Models.Item>
+
+@{ ViewData["Title"] = "Index"; }
+<link href="~/css/cards.css" rel="stylesheet" />
+<h1 class="font-weight-lighter text-light">Items Found</h1>
+
+
+<br />
+<br />
+<div class="card-group card-goup">
+    <div class="row cardgrouprow">
+        @foreach (var item in Model)
+        {
+<div class="col-sm collumn">
+    <div class="card btn-outline btn-width">
+        <a class="asp-style-card" asp-controller="Items" asp-action="Details" asp-route-id="@item.ItemId">
+            <clickable>
+                <img src=@item.Image class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                </div>
+            </clickable>
+        </a>
+        <div class="card-footer">
+            <h6 class="text-muted">Price-@item.Price ₪ , Color-@item.Color , Size-@item.Size </h6>
+            <form asp-controller="Carts" asp-action="AddToCart" asp-route-id="@item.ItemId" method="post">
+                <button type="submit" class="btn btn-secondary btn-sm card-background">
+                    Add To Cart
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+        }
+    </div>
+</div>
+@if (Model.ToList().Count == 0)
+{
+<h5> Item not found.</h5>}
+<br />
+<br />
+<div>
+    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Return to Home</a>
+</div>

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<JanumikaPro.Models.Item>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Items List</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+
+</p>
+<form asp-action="SearchItems">
+    <input name="query" placeholder="Enter product To Search" />
+    <input type="submit" value="Filter By Name" class="btn btn-secondary" />
+</form>
+<div class="serach2">
+    <form class="formStyle" asp-controller="Items" asp-action="Search2">
+        <label class="text" for="Item Size">Item Size :</label>
+        <select class="choiceStyle" id="size" name="size" required>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+        </select><br />
+
+        <label class="text" for="price">Max Price :</label>
+        <select class="choiceStyle" name="price" id="price" required>
+
+            @for (int i = 5; i < 305; i += 5)
+            {
+                <option value="@i">@i</option>
+            }
+        </select><br />
+        <label for="color">color :</label>
+ <select class="choiceStyle" name="color" id="color" required>
+ @{
+        HashSet<String> colors = new HashSet<string>();
+        foreach (var item in Model)
+         {
+
+             colors.Add(item.Color);
+
+         }
+            foreach (String color in colors)
+
+             {
+                <option value="@color">@color</option>
+                                                                  
+             }
+
+  }                                                        
+    }
+  }
+    </select>
+
+        <br /> <br />
+        <input type="submit" value="Search" class="btn btn-secondary" />
+    </form>
+</div>
+
+<div class="card-group card-goup">
+    <div class="row cardgrouprow">
+        @foreach (var item in Model)
+        {
+<div class="col-sm collumn">
+    <div class="card btn-outline btn-width">
+        <a class="asp-style-card" asp-controller="Items" asp-action="Details" asp-route-id="@item.ItemId">
+            <clickable>
+                <img src=@item.Image class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                </div>
+            </clickable>
+        </a>
+        <div class="card-footer">
+            <h6 class="text-muted">Price-@item.Price ₪ , Color-@item.Color , Size-@item.Size </h6>
+            <form asp-controller="Carts" asp-action="AddToCart" asp-route-id="@item.ItemId" method="post">
+                <button type="submit" class="btn btn-secondary btn-sm card-background">
+                    Add To Cart
+                </button>
+            </form>
+        </div>
+    </div>
+</div>}
+    </div>
+</div>

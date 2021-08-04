@@ -1,0 +1,152 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - JanumikaProject</title>
+    <link href="~/css/Privacy.css" rel="stylesheet" />
+    <link href="~/css/Home.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/cards.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body style=" background-color: #E4F9F5">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="background-color:whitesmoke">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="VisitUs">Visit Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
+                        </li>
+                        @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Logout">Log-Out</a>
+                            </li>
+
+                            if (Context.User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Items" asp-action="Statistics">Statistics</a>
+                                </li>
+                            }
+
+                            <li class="nav-item d-flex" style="margin:4px">
+                                <a href="https://www.facebook.com/janumika/"><i class="bi bi-facebook fs-2"></i></a>
+
+
+                            </li>
+                            <li class="nav-item d-flex" style="margin:4px">
+                                <a href="https://www.instagram.com/janumika/"><i class="bi bi-instagram fs-2"></i></a>
+
+                            </li>
+                            <li class="nav-item d-flex" style="margin:4px">
+                                <a href="https://api.whatsapp.com/send?phone=972505605588"><i class="bi bi-whatsapp fs-2"></i></a>
+
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Login">Login</a>
+                            </li>
+
+                            <li class="nav-item d-flex" style="margin:4px">
+                                <a href="https://www.facebook.com/janumika/"> <i class="bi bi-facebook fs-2"></i></a>
+
+
+                            </li>
+                            <li class="nav-item d-flex" style="margin:4px">
+                                <a href="https://www.instagram.com/janumika/">  <i class="bi bi-instagram fs-2"></i></a>
+
+                            </li>
+                            <li class="nav-item d-flex" style="margin:4px">
+                                <a href="https://api.whatsapp.com/send?phone=972505605588"><i class="bi bi-whatsapp fs-2"></i></a>
+                            </li>
+
+                        }
+
+
+                    </ul>
+                    @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
+                    {
+                        <div class="d-flex">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Hi , @Context.User.Identity.Name</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Carts" asp-action="MyCart"><i class="bi bi-cart2 fs-2"></i></a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Login"><i class="bi bi-cart2 fs-2"></i></a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="container w-50 text-center" style=" color: black">
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <b>Janumika</b> was Born out of a love for beauty, aesthetics, sea and nature.
+                        We carefully choose the products from wandering around the world and thinking that we would like all the items we collect for ourselves.
+                    </p>
+                    <p><b>Address-</b> Kfar Hess</p>
+                    <p><b>Email-</b> Janumika@gmail.com</p>
+                    <p>
+
+                        <li class="nav-item">
+
+                            <script>
+                                     function myFunction() {
+                                         var x ="https://www.janumika.com/";
+                                    document.getElementById("jinu").src = 'https://www.facebook.com/plugins/share_button.php?href=' + x + '&layout=button_count&size=large&mobile_iframe=true&width=83&height=28&appId';
+                                }</script>
+
+                            <body onload="myFunction()">
+                                <iframe id="jinu" src="" width="110" height="28" style="border:none;overflow:hidden;position:absolute;left:42%" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                            </body>
+
+                        </li>
+                    </p>
+                    <img src="https://static.wixstatic.com/media/163650_9eb98d02dd8e47c3916ea24ccdae0f36~mv2.png/v1/fill/w_186,h_105,al_c,q_95/163650_9eb98d02dd8e47c3916ea24ccdae0f36~mv2.webp" />
+                </div>
+
+            </div>
+        </div>
+
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

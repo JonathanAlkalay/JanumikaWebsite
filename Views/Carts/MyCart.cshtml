@@ -1,0 +1,99 @@
+﻿@model  JanumikaPro.Models.Cart
+ @{
+     ViewData["Title"] = "AddToCart";
+}
+
+<h1>Cart Summary</h1>
+
+<table class="table-striped styleTable">
+    <thead>
+        <tr>
+            <th>
+                <p>Items&emsp;&emsp;</p>
+            </th>
+            <th>
+                <p>Quantity&emsp;&emsp;&emsp;&emsp;</p>
+            </th>
+            <th>
+                <p>Size&emsp;&emsp;&emsp;&emsp;</p>
+            </th>
+            <th>
+                <p>Color&emsp;&emsp;&emsp;&emsp;</p>
+            </th>
+            <th>
+                <p>Price&emsp;&emsp;</p>
+            </th>
+</thead>
+    <tbody>
+
+
+            @foreach (var CartItem in Model.Items)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => CartItem.Item.Name)
+                &emsp;&emsp;&emsp;&emsp;
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => CartItem.Quantity)
+                &emsp;&emsp;
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => CartItem.Item.Size)
+                &emsp;&emsp;
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => CartItem.Item.Color)
+                &emsp;&emsp;
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => CartItem.TotalPrice)
+                &emsp;&emsp;
+            </td>
+
+            <th>
+                <form asp-controller="Carts" asp-action="RemoveProduct" asp-route-id="@CartItem.Item.ItemId" method="post">
+                    <button class="btn btn-danger" type="submit"> - </button>
+                </form>
+            </th>
+            <th>
+                <form asp-controller="Carts" asp-action="AddQuantity" asp-route-id="@CartItem.Item.ItemId" method="post">
+                    <button class="btn btn-primary" type="submit"> + </button>
+                </form>
+            </th>
+            <th>
+                <form asp-controller="Carts" asp-action="DeleteProduct" asp-route-id="@CartItem.Item.ItemId" method="post">
+                    <button class="btn btn-danfer" type="submit"> Remove Item </button>
+                </form>
+            </th>
+        </tr>}
+        </tbody>
+
+<thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </th>
+        <th>
+            @if (Model.TotalPrice == 0 || Model.Items.Count == 0)
+            {
+                <form asp-controller="Orders" asp-action="Create" asp-route-id="@Model.UserId" method="post">
+                     <button class="btn btn-danger" disabled type="submit">Cart is Empty</button>
+                 </form> 
+            }
+            else
+            {
+                  <form asp-controller="Orders" asp-action="Create" asp-route-id="@Model.UserId" method="post">
+                       <button class="btn btn-primary" type="submit">Proceed To Checkout</button>
+                  </form>
+            }
+        </th>
+    </tr>
+    </thead>
+</table>
+
+

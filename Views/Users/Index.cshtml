@@ -1,0 +1,43 @@
+﻿@model JanumikaPro.Models.User
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 id="UserHomePage">@Html.DisplayFor(model => model.UserName) Home Page</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Orders)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Email)
+            </td>
+            <td>
+                <a asp-controller="Orders" asp-action="UserOrders" asp-route-id="@Model.Id">View Orders</a>
+            </td>
+            <td><button class="alert-info">
+                     <a asp-controller="Users" asp-action="EditPassword" asp-route-id="@Model.Id">Change Password</a>
+                </button>
+
+            </td>
+        </tr>
+
+    </tbody>
+</table>

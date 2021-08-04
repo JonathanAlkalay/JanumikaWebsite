@@ -1,0 +1,126 @@
+﻿@using JanumikaPro.Controllers;
+@using JanumikaPro.Models;
+@{ ViewBag.Title = "statistics"; }
+
+<h1 id="Stat">Statistics</h1>
+
+
+<div>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <div id="container" class="graph1"></div>
+
+    <br />
+    <br />
+    <br />
+    <table id="datatable" class="datatable">
+        <thead>
+            <tr>
+                <th></th>
+                <th>User name</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var v in ViewBag.data1 as ICollection<Stat>)
+            {
+<tr>
+    <th>@v.Key</th>
+    <th>@v.Values</th>
+</tr>
+       }
+        </tbody>
+    </table>
+
+    <script>Highcharts.chart('container', {
+            data: {
+                table: 'datatable'
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Which user has most orders'
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: 'number of orders'
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        this.point.y + ' ' + this.point.name.toLowerCase();
+                }
+            }
+
+        });</script>
+
+</div>
+
+
+<br />
+<br />
+
+
+
+<br />
+<br />
+
+
+<div>
+    <div id="container1" class="graph2"></div>
+
+    <br />
+    <br />
+    <br />
+    <table id="datatable2" class="datatable2">
+        <thead>
+            <tr>
+                <th></th>
+                <th>number of items</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var v in ViewBag.data2 as ICollection<Stat>)
+            {
+<tr>
+    <th>@v.Key</th>
+    <th>@v.Values</th>
+</tr>}
+        </tbody>
+    </table>
+
+    <script>Highcharts.chart('container1', {
+                data: {
+                    table: 'datatable2'
+                },
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'which Category has most items'
+                },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}: {point.percentage:.1f} %'
+                        }
+                    }
+
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br/>'
+                }
+            });</script>
+
+</div>
